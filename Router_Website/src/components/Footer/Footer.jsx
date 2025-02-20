@@ -25,7 +25,7 @@ export default function Footer() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/about" className="hover:underline">
+                                    <Link to="/about" className={({isActive}) => `mhover:underline ${isActive?"text-orange-700":"text-gray-500"}`}>
                                         About
                                     </Link>
                                 </li>
