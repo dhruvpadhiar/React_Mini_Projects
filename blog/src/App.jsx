@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react'
-import {useDispatch} from 'react-redux'
-import authService from './appwrite/auth'
-import {login, logout} from './store/authSilce'
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import './App.css'
-import Header from './components/header/Header'
-import Footer from './components/footer/Footer'
-import {Outlet} from 'react-router-dom'
+import authService from "./appwrite/auth"
+import {login, logout} from "./store/authSilce"
+import { Footer, Header } from './components'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -22,20 +21,18 @@ function App() {
     })
     .finally(() => setLoading(false))
   }, [])
-
+  
   return !loading ? (
     <div className='min-h-screen flex flex-wrap content-between bg-white'>
       <div className='w-full block'>
-        <Header/>
+        <Header />
         <main>
-          TODO: {/* <Outlet/> */}
+          <Outlet />
         </main>
-        <Footer/>
+        <Footer />
       </div>
     </div>
   ) : null
-
-
 }
 
 export default App

@@ -1,22 +1,21 @@
-import React, {useCallback} from 'react'
-import { useForm } from 'react-hook-form'
-import {Button, Select, Input, RTE} from "../index"
-import appwriteService from "../../appwrite/config"
-import { useNavigate } from 'react-router'
-import { useSelector } from 'react-redux'
+import React, { useCallback } from "react";
+import { useForm } from "react-hook-form";
+import { Button, Input, RTE, Select } from "..";
+import appwriteService from "../../appwrite/config";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function PostForm({post}) {
-    const navigate = useNavigate();
+export default function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
-    defaultValues: {
-      title: post?.title || "",
-      slug: post?.slug || "",
-      content: post?.content || "",
-      status: post?.status || "active",
-      
-    }
+        defaultValues: {
+            title: post?.title || "",
+            slug: post?.$id || "",
+            content: post?.content || "",
+            status: post?.status || "active",
+        },
     });
 
+    const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
@@ -49,7 +48,7 @@ function PostForm({post}) {
             }
         }
     };
-    
+
     const slugTransform = useCallback((value) => {
         if (value && typeof value === "string")
             return value
